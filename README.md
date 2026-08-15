@@ -127,56 +127,39 @@ The AI agent:
   
 Local Setup
 1. Clone the repository
-git clone <your-repository-url>
-cd ai_customer_support_agent
+- git clone <your-repository-url>
+- cd ai_customer_support_agent
 2. Create a virtual environment
-python -m venv venv
+- python -m venv venv
 
 Activate it.
-
 Windows:
-
-venv\Scripts\activate
+- venv\Scripts\activate
 3. Install dependencies
-pip install -r requirements.txt
+- pip install -r requirements.txt
 4. Create the vector database
-python vectorstore/create_vectorstore.py
+- python vectorstore/create_vectorstore.py
 5. Start Ollama
 
 Make sure Ollama is running and the required model is available:
 
-ollama pull llama3.2
+- ollama pull llama3.2
 6. Start the FastAPI backend
-uvicorn backend.main:app --reload
+- uvicorn backend.main:app --reload
 7. Start the Streamlit application
 
 Open another terminal and run:
-
-streamlit run frontend/app.py
-API Endpoints
-Home
-GET /
-Track Order
-GET /orders/{order_id}
-
-Example:
-
-/orders/ORD1001
-Chat with AI Assistant
-POST /chat
-
-Example request:
-
-{
-  "message": "Where is my order ORD1001?"
-}
-Future Improvements
-Conversation memory
-User authentication
-PostgreSQL database
-Admin dashboard
-Docker containerization
-Cloud deployment
-Multiple company documents
-Order cancellation functionality
-Human support escalation
+- streamlit run frontend/app.py
+  
+```
+## Future Improvements
+```
+- Conversation memory
+- User authentication
+- PostgreSQL database
+- Admin dashboard
+- Docker containerization
+- Cloud deployment
+- Multiple company documents
+- Order cancellation functionality
+- Human support escalation
