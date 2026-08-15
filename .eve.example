@@ -1,0 +1,12 @@
+# LLM Configuration
+LLM_PROVIDER=google
+
+# Ollama Configuration (for local development)
+OLLAMA_MODEL=llama3.2
+
+# Google Gemini Configuration
+GOOGLE_API_KEY=your_google_api_key_here
+GOOGLE_MODEL=gemini-2.5-flash
+
+# Frontend API Configuration
+API_URL=http://127.0.0.1:8000/chat

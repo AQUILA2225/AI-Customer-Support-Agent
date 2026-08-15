@@ -1,4 +1,4 @@
-from llm.ollama_llm import get_llm
+from llm.providers import get_llm
 from tools.rag_policy_tool import search_company_policy
 
 

@@ -1,8 +1,14 @@
 import streamlit as st
 import requests
+import os   
+from dotenv import load_dotenv  
 
+load_dotenv()
 
-API_URL = "http://127.0.0.1:8000/chat"
+API_URL = os.getenv(
+    "API_URL",
+    "http://127.0.0.1:8000/chat"
+)
 
 
 st.set_page_config(

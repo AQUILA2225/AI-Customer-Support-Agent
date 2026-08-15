@@ -2,14 +2,15 @@ fastapi
 uvicorn
 streamlit
 requests
-
 pydantic
+python-dotenv
 
 langchain-core
 langchain-text-splitters
 langchain-chroma
 langchain-huggingface
 langchain-ollama
+langchain-google-genai
 
 chromadb
 sentence-transformers

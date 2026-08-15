@@ -4,7 +4,7 @@ from langchain_core.messages import (
     ToolMessage
 )
 
-from llm.ollama_llm import get_llm
+from llm.providers import get_llm
 from tools.order_tracking import get_order_status
 from tools.rag_policy_tool import search_company_policy
 

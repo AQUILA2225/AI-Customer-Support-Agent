@@ -1,10 +1,23 @@
-from fastapi import FastAPI
+import os
+from vectorstore.create_vectorstore import create_vectorstore
 
+from fastapi import FastAPI
 from agents.customer_support_agent import run_customer_support_agent
 from models.chat import ChatRequest, ChatResponse
 from models.order import OrderResponse
 from tools.order_tracking import get_order_status
+from vectorstore.initializer import initialize_vectorstore
 from fastapi import FastAPI, HTTPException
+
+
+
+VECTORSTORE_PATH = "vectorstore/chroma_db"
+
+if not os.path.exists(VECTORSTORE_PATH):
+    print("ChromaDB not found. Creating vector database...")
+    create_vectorstore()
+else:
+    print("ChromaDB found. Using existing vector database.")
 
 app = FastAPI(
     title="AI Customer Support Agent",
@@ -12,6 +25,9 @@ app = FastAPI(
     version="1.0.0"
 )
 
+@app.on_event("startup")
+def startup_event():
+    initialize_vectorstore()
 
 @app.get("/")
 def home():

@@ -1,9 +1,20 @@
+import os
+
+from dotenv import load_dotenv
 from langchain_ollama import ChatOllama
 
 
+load_dotenv()
+
+
 def get_llm():
+    model_name = os.getenv(
+        "OLLAMA_MODEL",
+        "llama3.2"
+    )
+
     llm = ChatOllama(
-        model="llama3.2",
+        model=model_name,
         temperature=0
     )
 
