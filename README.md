@@ -42,16 +42,16 @@ AI Customer Support Agent
 ```
 ## Tech Stack
 
-Python
-FastAPI
-Streamlit
-LangChain
-Ollama
-Llama 3.2
-ChromaDB
-Sentence Transformers
-SQLite
-Pydantic
+- Python
+- FastAPI
+- Streamlit
+- LangChain
+- Ollama
+- Llama 3.2
+- ChromaDB
+- Sentence Transformers
+- SQLite
+- Pydantic
 
 ```
 ## Project Structure
@@ -106,12 +106,12 @@ Where is my order ORD1001?
 
 The AI agent:
 
-Detects that order information is required.
-Calls the get_order_status tool.
-Retrieves data from SQLite.
-Sends the tool result back to the LLM.
-Generates a customer-friendly response.
-Company Policy Questions
+- Detects that order information is required.
+- Calls the get_order_status tool.
+- Retrieves data from SQLite.
+- Sends the tool result back to the LLM.
+- Generates a customer-friendly response.
+- Company Policy Questions
 
 When a user asks:
 
@@ -119,63 +119,47 @@ Can I return a product after 20 days?
 
 The AI agent:
 
-Detects that company policy information is required.
-Calls the search_company_policy tool.
-Searches ChromaDB using semantic similarity.
-Retrieves relevant policy information.
-Uses the LLM to generate a response.
+- Detects that company policy information is required.
+- Calls the search_company_policy tool.
+- Searches ChromaDB using semantic similarity.
+- Retrieves relevant policy information.
+- Uses the LLM to generate a response.
+  
 Local Setup
 1. Clone the repository
-git clone <your-repository-url>
-cd ai_customer_support_agent
+- git clone <your-repository-url>
+- cd ai_customer_support_agent
 2. Create a virtual environment
-python -m venv venv
+- python -m venv venv
 
 Activate it.
-
 Windows:
-
-venv\Scripts\activate
+- venv\Scripts\activate
 3. Install dependencies
-pip install -r requirements.txt
+- pip install -r requirements.txt
 4. Create the vector database
-python vectorstore/create_vectorstore.py
+- python vectorstore/create_vectorstore.py
 5. Start Ollama
 
 Make sure Ollama is running and the required model is available:
 
-ollama pull llama3.2
+- ollama pull llama3.2
 6. Start the FastAPI backend
-uvicorn backend.main:app --reload
+- uvicorn backend.main:app --reload
 7. Start the Streamlit application
 
 Open another terminal and run:
-
-streamlit run frontend/app.py
-API Endpoints
-Home
-GET /
-Track Order
-GET /orders/{order_id}
-
-Example:
-
-/orders/ORD1001
-Chat with AI Assistant
-POST /chat
-
-Example request:
-
-{
-  "message": "Where is my order ORD1001?"
-}
-Future Improvements
-Conversation memory
-User authentication
-PostgreSQL database
-Admin dashboard
-Docker containerization
-Cloud deployment
-Multiple company documents
-Order cancellation functionality
-Human support escalation
+- streamlit run frontend/app.py
+  
+```
+## Future Improvements
+```
+- Conversation memory
+- User authentication
+- PostgreSQL database
+- Admin dashboard
+- Docker containerization
+- Cloud deployment
+- Multiple company documents
+- Order cancellation functionality
+- Human support escalation
