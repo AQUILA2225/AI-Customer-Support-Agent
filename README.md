@@ -42,16 +42,16 @@ AI Customer Support Agent
 ```
 ## Tech Stack
 
-Python
-FastAPI
-Streamlit
-LangChain
-Ollama
-Llama 3.2
-ChromaDB
-Sentence Transformers
-SQLite
-Pydantic
+- Python
+- FastAPI
+- Streamlit
+- LangChain
+- Ollama
+- Llama 3.2
+- ChromaDB
+- Sentence Transformers
+- SQLite
+- Pydantic
 
 ```
 ## Project Structure
@@ -106,12 +106,12 @@ Where is my order ORD1001?
 
 The AI agent:
 
-Detects that order information is required.
-Calls the get_order_status tool.
-Retrieves data from SQLite.
-Sends the tool result back to the LLM.
-Generates a customer-friendly response.
-Company Policy Questions
+- Detects that order information is required.
+- Calls the get_order_status tool.
+- Retrieves data from SQLite.
+- Sends the tool result back to the LLM.
+- Generates a customer-friendly response.
+- Company Policy Questions
 
 When a user asks:
 
@@ -119,11 +119,12 @@ Can I return a product after 20 days?
 
 The AI agent:
 
-Detects that company policy information is required.
-Calls the search_company_policy tool.
-Searches ChromaDB using semantic similarity.
-Retrieves relevant policy information.
-Uses the LLM to generate a response.
+- Detects that company policy information is required.
+- Calls the search_company_policy tool.
+- Searches ChromaDB using semantic similarity.
+- Retrieves relevant policy information.
+- Uses the LLM to generate a response.
+  
 Local Setup
 1. Clone the repository
 git clone <your-repository-url>
