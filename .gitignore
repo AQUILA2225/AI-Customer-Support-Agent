@@ -1,0 +1,23 @@
+# Virtual environment
+ai_CSA/
+.venv/
+venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Environment variables
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# ChromaDB generated files
+vectorstore/chroma_db/
+
+# Python build files
+build/
+dist/
+*.egg-info/
