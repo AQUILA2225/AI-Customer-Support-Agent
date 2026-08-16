@@ -7,7 +7,10 @@ load_dotenv()
 
 API_URL = os.getenv(
     "API_URL",
-    "http://127.0.0.1:8000/chat"
+    st.secrets.get(
+        "API_URL",
+        "http://127.0.0.1:8000/chat"
+    )
 )
 
 st.set_page_config(
