@@ -9,8 +9,6 @@ from tools.order_tracking import get_order_status
 from vectorstore.initializer import initialize_vectorstore
 from fastapi import FastAPI, HTTPException
 
-
-
 VECTORSTORE_PATH = "vectorstore/chroma_db"
 
 if not os.path.exists(VECTORSTORE_PATH):
@@ -35,7 +33,6 @@ def home():
         "message": "AI Customer Support Agent API is running"
     }
 
-
 @app.get(
     "/orders/{order_id}",
     response_model=OrderResponse
@@ -45,9 +42,7 @@ def track_order(order_id: str):
     result = get_order_status.invoke(
         {"order_id": order_id}
     )
-
     return result
-
 
 @app.post(
     "/chat",
@@ -74,10 +69,8 @@ def chat(request: ChatRequest):
 
     except HTTPException:
         raise
-
     except Exception as error:
         print(f"Chat error: {error}")
-
         raise HTTPException(
             status_code=500,
             detail="Unable to process your request. Please try again."

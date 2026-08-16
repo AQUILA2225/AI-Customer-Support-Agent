@@ -1,6 +1,5 @@
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
-
 def load_and_split_documents():
     with open(
         "data/company_policies.txt",
@@ -15,9 +14,7 @@ def load_and_split_documents():
     )
 
     chunks = text_splitter.split_text(text)
-
     return chunks
-
 
 if __name__ == "__main__":
     chunks = load_and_split_documents()

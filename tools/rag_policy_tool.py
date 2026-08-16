@@ -1,8 +1,6 @@
 from langchain_core.tools import tool
 from langchain_chroma import Chroma
-
 from llm.embeddings import get_embeddings
-
 
 @tool
 def search_company_policy(query: str) -> str:
@@ -16,7 +14,6 @@ def search_company_policy(query: str) -> str:
     """
 
     embeddings = get_embeddings()
-
     vectorstore = Chroma(
         persist_directory="vectorstore/chroma_db",
         embedding_function=embeddings
@@ -29,7 +26,6 @@ def search_company_policy(query: str) -> str:
 
     if not results:
         return "No relevant company policy information found."
-
     policy_context = "\n\n".join(
         document.page_content
         for document in results
@@ -37,12 +33,10 @@ def search_company_policy(query: str) -> str:
 
     return policy_context
 
-
 if __name__ == "__main__":
     result = search_company_policy.invoke(
         {
             "query": "Can I return a product after 20 days?"
         }
     )
-
     print(result)

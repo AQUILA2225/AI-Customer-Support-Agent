@@ -1,14 +1,11 @@
 from llm.providers import get_llm
 from tools.rag_policy_tool import search_company_policy
 
-
 def answer_policy_question(question: str) -> str:
-    # Retrieve relevant policy information
+
     policy_context = search_company_policy(question)
 
-    # Get the LLM
     llm = get_llm()
-
     prompt = f"""
 You are a helpful customer support assistant.
 
@@ -28,9 +25,7 @@ Provide a clear and helpful answer.
 """
 
     response = llm.invoke(prompt)
-
     return response.content
-
 
 if __name__ == "__main__":
     question = "Can I return a product after 20 days?"
@@ -39,6 +34,5 @@ if __name__ == "__main__":
 
     print("\nCustomer Question:")
     print(question)
-
     print("\nAI Answer:")
     print(answer)

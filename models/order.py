@@ -1,7 +1,5 @@
 from pydantic import BaseModel
 from typing import Optional
-
-
 class OrderResponse(BaseModel):
     found: bool
     order_id: Optional[str] = None

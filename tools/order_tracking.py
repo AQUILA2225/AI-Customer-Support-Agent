@@ -1,7 +1,6 @@
 import sqlite3
 from langchain_core.tools import tool
 
-
 @tool
 def get_order_status(order_id: str) -> dict:
     """
@@ -18,7 +17,6 @@ def get_order_status(order_id: str) -> dict:
 
     connection = sqlite3.connect("database/orders.db")
     cursor = connection.cursor()
-
     cursor.execute(
         """
         SELECT order_id, customer_name, product_name,
@@ -28,9 +26,7 @@ def get_order_status(order_id: str) -> dict:
         """,
         (order_id,)
     )
-
     order = cursor.fetchone()
-
     connection.close()
 
     if order is None:
@@ -38,7 +34,6 @@ def get_order_status(order_id: str) -> dict:
             "found": False,
             "message": f"No order found with ID {order_id}"
         }
-
     return {
         "found": True,
         "order_id": order[0],
@@ -48,10 +43,8 @@ def get_order_status(order_id: str) -> dict:
         "estimated_delivery": order[4]
     }
 
-
 if __name__ == "__main__":
     result = get_order_status.invoke(
         {"order_id": "ORD1001"}
     )
-
     print(result)

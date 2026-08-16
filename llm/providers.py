@@ -1,9 +1,7 @@
 import os
-
 from dotenv import load_dotenv
 
 load_dotenv()
-
 
 def get_llm():
     provider = os.getenv(
@@ -14,7 +12,6 @@ def get_llm():
     if provider == "ollama":
 
         from langchain_ollama import ChatOllama
-
         model_name = os.getenv(
             "OLLAMA_MODEL",
             "llama3.2"
@@ -26,9 +23,7 @@ def get_llm():
         )
 
     elif provider == "google":
-
         from langchain_google_genai import ChatGoogleGenerativeAI
-
         api_key = os.getenv("GOOGLE_API_KEY")
 
         if not api_key:

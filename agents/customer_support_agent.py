@@ -3,33 +3,26 @@ from langchain_core.messages import (
     SystemMessage,
     ToolMessage
 )
-
 from llm.providers import get_llm
 from tools.order_tracking import get_order_status
 from tools.rag_policy_tool import search_company_policy
 
-
 def run_customer_support_agent(user_query: str) -> str:
 
-    # Get the LLM
     llm = get_llm()
 
-    # Available tools
     tools = [
         get_order_status,
         search_company_policy
     ]
 
-    # Bind tools only for the first LLM call
     llm_with_tools = llm.bind_tools(tools)
 
-    # Create a dictionary for tool lookup
     tools_by_name = {
         tool.name: tool
         for tool in tools
     }
 
-    # Initial conversation
     messages = [
         SystemMessage(
             content="""
@@ -60,23 +53,15 @@ friendly, and concise answer to the customer.
         HumanMessage(content=user_query)
     ]
 
-    # First LLM call WITH tools
     response = llm_with_tools.invoke(messages)
 
-    # Add AI response to conversation
     messages.append(response)
-
-    # Check if the LLM requested a tool
     if response.tool_calls:
-
-        # Execute all requested tools
         for tool_call in response.tool_calls:
-
             tool_name = tool_call["name"]
             tool_args = tool_call["args"]
-
             selected_tool = tools_by_name.get(tool_name)
-
+            
             if selected_tool is None:
                 tool_result = f"Tool '{tool_name}' is not available."
             else:
@@ -85,18 +70,15 @@ friendly, and concise answer to the customer.
                 except Exception as e:
                     tool_result = f"Error while executing tool: {str(e)}"
 
-            # Add tool result to conversation
             messages.append(
                 ToolMessage(
                     content=str(tool_result),
                     tool_call_id=tool_call["id"]
                 )
             )
-
-        # This forces the model to generate the final answer
+            
         final_response = llm.invoke(messages)
-
-        # Handle possible list/empty content safely
+        
         if isinstance(final_response.content, str):
             return final_response.content
 
@@ -116,8 +98,6 @@ friendly, and concise answer to the customer.
 
         return "I found the information, but I was unable to generate a response."
 
-
-    # If no tool was required
     if isinstance(response.content, str):
         return response.content
 
@@ -137,15 +117,12 @@ friendly, and concise answer to the customer.
 
     return "I'm sorry, but I was unable to generate a response."
 
-
 if __name__ == "__main__":
 
     query = "Where is my order ORD1001?"
-
     response = run_customer_support_agent(query)
 
     print("\nUser Question:")
     print(query)
-
     print("\nAI Assistant:")
     print(response)
