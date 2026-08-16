@@ -1,6 +1,7 @@
 from langchain_core.tools import tool
 from langchain_chroma import Chroma
-from langchain_huggingface import HuggingFaceEmbeddings
+
+from llm.embeddings import get_embeddings
 
 
 @tool
@@ -14,9 +15,7 @@ def search_company_policy(query: str) -> str:
     or payment methods.
     """
 
-    embeddings = HuggingFaceEmbeddings(
-        model_name="sentence-transformers/all-MiniLM-L6-v2"
-    )
+    embeddings = get_embeddings()
 
     vectorstore = Chroma(
         persist_directory="vectorstore/chroma_db",
